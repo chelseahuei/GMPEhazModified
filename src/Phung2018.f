@@ -578,7 +578,7 @@ c ------------------------------------------------------------------
      1     a11(MAXPER), a10(MAXPER),
      1     phisstw(MAXPER), phis2stw(MAXPER), tautw(MAXPER), phitw(MAXPER), b(MAXPER)
 
-      real sigma, lnSa, pgaRock, vs30, rRup, disthypo, mag 
+      real sigma, lnSa, pgaRock, vs30, rRup, disthypo, mag , vlin, pga1000
 
       real periodT, a5T, a13T, MrefT, a2T, a14T, dela1T, dela4T, a6jpT, a12jpT, a8jpT
       real phisstjT,  phis2stjT, tau0T, a1twT, a4twT,  a7T, a6twT, a12twT, a8T
@@ -587,7 +587,7 @@ c ------------------------------------------------------------------
       real Ez1, fz10, fmag, frup, fsite, fztor, fevt
       real period1, a3, Z10, ZTor, a9, d, b12, lnY, Fs, a11si, a11ss, phiss, phis2s, a1, a4,a6,a12
       integer count1, count2, iflag, regionflag
-      real n, c, c4, c1, faba, R, depth, specT, tau, phi, ftype, period2, vlin, pga1000
+      real n, c, c4, c1, faba, R, depth, specT, tau, phi, ftype, period2
 
 
       data period  /0, 0.01, 0.02, 0.05, 0.075, 0.1, 0.15, 0.2, 0.25, 0.3, 0.4, 0.5, 0.6, 0.75, 1, 1.5, 2, 
@@ -669,6 +669,7 @@ c ------------------------------------------------------------------
   
 C Constant parameters            
 
+      c = 1.88
       c4 = 10
       a3 = 0.1
       a9 = 0.25
@@ -874,9 +875,9 @@ C     Path Scaling
      
 C     Site Effect
       if  (vs30 .lt. vlin ) then
-         fsite = a12*alog(min(vs30,1000)/vlin) - b*alog(PGA1000+c) + b*alog(pga1000+c*((min(vs30,1000)/vlin)**1.18))
+         fsite = a12*alog(min(vs30,1000)/vlin) - bT*alog(PGA1000+c) + bT*alog(pga1000+c*((min(vs30,1000)/vlin)**1.18))
       else
-         fsite = a12*alog(min(vs30,1000)/vlin) - b*1.18*alog(min(vs30,1000)/vlin)
+         fsite = a12*alog(min(vs30,1000)/vlin) - bT*1.18*alog(min(vs30,1000)/vlin)
       endif
 
 C   Basin Depth term

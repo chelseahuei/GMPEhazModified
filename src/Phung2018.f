@@ -874,10 +874,11 @@ C     Path Scaling
        frup = a1 + a7T*fevt +(a2T + a14T*fevt + a3*(mag - 7.8))*alog(R) + a6*rRup 
      
 C     Site Effect
+      vs = min(vs30,1000)
       if  (vs30 .lt. vlin ) then
-         fsite = a12*alog((min(vs30,1000))/vlin) - bT*alog(PGA1000+c) + bT*alog(pga1000+c*(((min(vs30,1000))/vlin)**1.18))
+         fsite = a12 * alog((min(vs30,1000))/vlin) - bT*alog(PGA1000+c) + bT*alog(pga1000+c*(((min(vs30,1000))/vlin)**1.18))
       else
-         fsite = a12*alog((min(vs30,1000))/vlin) - bT*1.18*alog((min(vs30,1000))/vlin)
+         fsite = a12 * alog((min(vs30,1000))/vlin) - bT*1.18*alog((min(vs30,1000))/vlin)
       endif
 
 C   Basin Depth term

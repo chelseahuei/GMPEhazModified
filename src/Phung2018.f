@@ -587,7 +587,7 @@ c ------------------------------------------------------------------
       real Ez1, fz10, fmag, frup, fsite, fztor, fevt
       real period1, a3, Z10, ZTor, a9, d, b12, lnY, Fs, a11si, a11ss, phiss, phis2s, a1, a4,a6,a12
       integer count1, count2, iflag, regionflag
-      real n, c, c4, c1, faba, R, depth, specT, tau, phi, ftype, period2
+      real n, c, c4, c1, faba, R, depth, specT, tau, phi, ftype, period2, vlin, vs, pga1000
 
 
       data period  /0, 0.01, 0.02, 0.05, 0.075, 0.1, 0.15, 0.2, 0.25, 0.3, 0.4, 0.5, 0.6, 0.75, 1, 1.5, 2, 
@@ -672,6 +672,8 @@ C Constant parameters
       c4 = 10
       a3 = 0.1
       a9 = 0.25
+      vlin = 865.1
+      vs = min(vs30,1000)
 
 C     regionflag     Note
 C     -------------------------
@@ -830,7 +832,29 @@ C  Regional term and  Basin Depth term
         phis2s = phis2stwT
   
       endif
+      
+C.....First compute the Reference Rock PGA value...........
+C     Magnitude Scaling
+      if (mag .le. MrefT ) then
+        fmag = a4*(mag-MrefT) + a13T*(10.0-mag)**2.0
+      else
+        fmag = a5T*(mag-MrefT) + a13T*(10.0-mag)**2.0
+      endif 
+   
+C     Ztor Scaling        
+      if  (ftype .eq. 0.0 ) then
+         fztor = a10T *(min(Ztor,40.0)-20)
+      elseif (ftype .eq. 1.0 ) then
+         fztor = a11T *(min(Ztor,80.0)-40)
+      endif
+      
+C     Path Scaling
+       R = rRup + c4*exp( (mag-6.0)*a9 ) 
+       frup = a1 + a7T*fevt +(a2T + a14T*fevt + a3*(mag - 7.8))*alog(R) + a6*rRup 
 
+      pga1000 = exp(fmag+fztor+frup)
+
+C.....Now compute the requested ground motion value........
 C     Magnitude Scaling
       if (mag .le. MrefT ) then
         fmag = a4*(mag-MrefT) + a13T*(10.0-mag)**2.0
@@ -850,18 +874,22 @@ C     Path Scaling
        frup = a1 + a7T*fevt +(a2T + a14T*fevt + a3*(mag - 7.8))*alog(R) + a6*rRup 
      
 C     Site Effect
-       fsite = a12*min(alog(vs30/760.0),0.0)
+      if  (vs30 .lt. vlin ) then
+         fsite = a12*alog(vs/vlin) - b*alog(PGA1000+c) + b*alog(pga1000+c*((vs/vlin)**1.18))
+      else
+         fsite = a12*alog(vs/vlin) - b*1.18*alog(vs/vlin)
+      endif
 
 C   Basin Depth term
       if(regionflag .eq. 1) then
        
         Ez1 = exp(-3.96/2.0 * alog((vs30**2.0 + 352.7**2.0)/(1750.0**2.0 + 352.7**2.0)))
-        fz10 = a8T*(min(alog(Z10*1000.0/Ez1),0.0))     
+        fz10 = a8T*(min(alog(Z10/Ez1),1.0))     
   
       else
   
         Ez1 = exp(-5.23/2.0 * alog((vs30**2.0 + 412.39**2.0)/(1360.0**2.0 + 412.39**2.0)))
-        fz10 = a8jpT*(min(alog(Z10*1000.0/Ez1),0.0))     
+        fz10 = a8jpT*(min(alog(Z10*1000.0/Ez1),1.0))     
   
       endif       
 

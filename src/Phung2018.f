@@ -578,7 +578,7 @@ c ------------------------------------------------------------------
      1     a11(MAXPER), a10(MAXPER),
      1     phisstw(MAXPER), phis2stw(MAXPER), tautw(MAXPER), phitw(MAXPER), b(MAXPER)
 
-      real sigma, lnSa, pgaRock, vs30, rRup, disthypo, mag , vlin, pga1000
+      real sigma, lnSa, pgaRock, vs30, rRup, disthypo, mag , vs, vlin, pga1000
 
       real periodT, a5T, a13T, MrefT, a2T, a14T, dela1T, dela4T, a6jpT, a12jpT, a8jpT
       real phisstjT,  phis2stjT, tau0T, a1twT, a4twT,  a7T, a6twT, a12twT, a8T
@@ -874,11 +874,11 @@ C     Path Scaling
        frup = a1 + a7T*fevt +(a2T + a14T*fevt + a3*(mag - 7.8))*alog(R) + a6*rRup 
      
 C     Site Effect
-      vs = min(vs30,1000)
+      vs = min(vs30,1000.0)
       if  (vs30 .lt. vlin ) then
-         fsite = a12 * alog((min(vs30,1000))/vlin) - bT*alog(PGA1000+c) + bT*alog(pga1000+c*(((min(vs30,1000))/vlin)**1.18))
+         fsite = a12 * alog(vs/vlin) - bT*alog(PGA1000+c) + bT*alog(pga1000+c*((vs/vlin)**1.18))
       else
-         fsite = a12 * alog((min(vs30,1000))/vlin) - bT*1.18*alog((min(vs30,1000))/vlin)
+         fsite = a12 * alog(vs/vlin) - bT*1.18*alog(vs/vlin)
       endif
 
 C   Basin Depth term

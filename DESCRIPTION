@@ -1,4 +1,4 @@
-Package: GMPEhaz
+Package: GMPEhazMod
 Type: Package
 Title: GMPE funciton using Norman Abrahamson's HAZ fortran code
 Version: 0.1.13.59

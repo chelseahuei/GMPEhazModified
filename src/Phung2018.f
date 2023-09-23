@@ -875,9 +875,9 @@ C     Path Scaling
      
 C     Site Effect
       if  (vs30 .lt. vlin ) then
-         fsite = a12*alog(min(vs30,1000)/vlin) - bT*alog(PGA1000+c) + bT*alog(pga1000+c*((min(vs30,1000)/vlin)**1.18))
+         fsite = a12*alog((min(vs30,1000))/vlin) - bT*alog(PGA1000+c) + bT*alog(pga1000+c*(((min(vs30,1000))/vlin)**1.18))
       else
-         fsite = a12*alog(min(vs30,1000)/vlin) - bT*1.18*alog(min(vs30,1000)/vlin)
+         fsite = a12*alog((min(vs30,1000))/vlin) - bT*1.18*alog((min(vs30,1000))/vlin)
       endif
 
 C   Basin Depth term

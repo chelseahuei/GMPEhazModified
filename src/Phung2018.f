@@ -890,7 +890,7 @@ C   Basin Depth term
       else
   
         Ez1 = exp(-5.23/2.0 * alog((vs30**2.0 + 412.39**2.0)/(1360.0**2.0 + 412.39**2.0)))
-        fz10 = a8jpT*(min(alog(Z10*1000.0/Ez1),1.0))     
+        fz10 = a8jpT*(min(alog(Z10/Ez1),1.0))     
   
       endif       
 

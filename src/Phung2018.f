@@ -587,7 +587,7 @@ c ------------------------------------------------------------------
       real Ez1, fz10, fmag, frup, fsite, fztor, fevt
       real period1, a3, Z10, ZTor, a9, d, b12, lnY, Fs, a11si, a11ss, phiss, phis2s, a1, a4,a6,a12
       integer count1, count2, iflag, regionflag
-      real n, c, c4, c1, faba, R, depth, specT, tau, phi, ftype, period2, vlin, vs, pga1000
+      real n, c, c4, c1, faba, R, depth, specT, tau, phi, ftype, period2, vlin, pga1000
 
 
       data period  /0, 0.01, 0.02, 0.05, 0.075, 0.1, 0.15, 0.2, 0.25, 0.3, 0.4, 0.5, 0.6, 0.75, 1, 1.5, 2, 
@@ -673,7 +673,6 @@ C Constant parameters
       a3 = 0.1
       a9 = 0.25
       vlin = 865.1
-      vs = min(vs30,1000)
 
 C     regionflag     Note
 C     -------------------------
@@ -875,9 +874,9 @@ C     Path Scaling
      
 C     Site Effect
       if  (vs30 .lt. vlin ) then
-         fsite = a12*alog(vs/vlin) - b*alog(PGA1000+c) + b*alog(pga1000+c*((vs/vlin)**1.18))
+         fsite = a12*alog(min(vs30,1000)/vlin) - b*alog(PGA1000+c) + b*alog(pga1000+c*((min(vs30,1000)/vlin)**1.18))
       else
-         fsite = a12*alog(vs/vlin) - b*1.18*alog(vs/vlin)
+         fsite = a12*alog(min(vs30,1000)/vlin) - b*1.18*alog(min(vs30,1000)/vlin)
       endif
 
 C   Basin Depth term

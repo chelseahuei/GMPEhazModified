@@ -668,7 +668,7 @@ c ------------------------------------------------------------------
      1            -2.099, 0, 0, 0, 0 /  
       data vlin / 865.1, 865.1, 865.1, 1053.5, 1085.7, 1032.5, 877.6, 748.2, 654.3, 587.1, 503, 456.6, 430.3, 410.5,  
      1            400, 400, 400, 400, 400, 400, 400 /  
-  
+
 C Constant parameters            
 
       c = 1.88
@@ -715,6 +715,7 @@ C First check for the PGA case
          tautwT =     tautw(i1)     
          phitwT =     phitw(i1) 
 	 bT = b(i1)
+  	 vlinT = vlin(i1)
 
          goto 1011
       endif
@@ -797,7 +798,12 @@ C Interpolate the coefficients for the requested spectral period.
       call S24_interp (period(count1),period(count2),phisstw(count1), phisstw(count2),
      +                 specT, phisstwT, iflag)
       call S24_interp (period(count1),period(count2),phis2stw(count1), phis2stw(count2),
-     +                 specT, phis2stwT, iflag)       
+     +                 specT, phis2stwT, iflag)  
+      call S24_interp (period(count1),period(count2),b(count1), b(count2),
+     +                 specT, bT, iflag)       
+      call S24_interp (period(count1),period(count2),vlin(count1), vlin(count2),
+     +                 specT, vlinT, iflag)       
+
 
 
  1011 period1 = specT                                                                                                              
@@ -876,10 +882,10 @@ C     Path Scaling
      
 C     Site Effect
       vs = min(vs30,1000.0)
-      if  (vs30 .lt. vlin ) then
-         fsite = a12 * alog(vs/vlin) - bT*alog(PGA1000+c) + bT*alog(pga1000+c*((vs/vlin)**1.18))
+      if  (vs30 .lt. vlinT ) then
+         fsite = a12 * alog(vs/vlinT) - bT*alog(PGA1000+c) + bT*alog(pga1000+c*((vs/vlinT)**1.18))
       else
-         fsite = a12 * alog(vs/vlin) - bT*1.18*alog(vs/vlin)
+         fsite = a12 * alog(vs/vlinT) - bT*1.18*alog(vs/vlinT)
       endif
 
 C   Basin Depth term

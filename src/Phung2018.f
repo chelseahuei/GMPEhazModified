@@ -576,9 +576,9 @@ c ------------------------------------------------------------------
 
       real a1tw(MAXPER), a4tw(MAXPER),  a7(MAXPER), a6tw(MAXPER), a12tw(MAXPER), a8(MAXPER),
      1     a11(MAXPER), a10(MAXPER),
-     1     phisstw(MAXPER), phis2stw(MAXPER), tautw(MAXPER), phitw(MAXPER), b(MAXPER)
+     1     phisstw(MAXPER), phis2stw(MAXPER), tautw(MAXPER), phitw(MAXPER), b(MAXPER), vlin(MAXPER)
 
-      real sigma, lnSa, pgaRock, vs30, rRup, disthypo, mag , vs, vlin, pga1000
+      real sigma, lnSa, pgaRock, vs30, rRup, disthypo, mag , vs, pga1000
 
       real periodT, a5T, a13T, MrefT, a2T, a14T, dela1T, dela4T, a6jpT, a12jpT, a8jpT
       real phisstjT,  phis2stjT, tau0T, a1twT, a4twT,  a7T, a6twT, a12twT, a8T

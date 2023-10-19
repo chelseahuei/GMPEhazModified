@@ -860,7 +860,10 @@ C     Path Scaling
        R = rRup + c4*exp( (mag-6.0)*a9 ) 
        frup = a1 + a7T*fevt +(a2T + a14T*fevt + a3*(mag - 7.8))*alog(R) + a6*rRup 
 
-      pga1000 = exp(fmag+fztor+frup)
+C     Site Effect
+       fsite = a12 * alog(vs/vlinT) + bT*1.18*alog((vs/vlinT))
+
+      pga1000 = exp(fmag+fztor+frup+fsite)
 
 C.....Now compute the requested ground motion value........
 C     Magnitude Scaling

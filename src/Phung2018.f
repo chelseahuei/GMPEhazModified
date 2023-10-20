@@ -887,7 +887,7 @@ C     Path Scaling
 C     Site Effect
       vs = min(vs30,1000.0)
       if  (vs30 .lt. vlinT ) then
-         fsite = a12 * alog(vs/vlinT) - bT*alog(PGA1000+c) + bT*alog(pga1000+c*((vs/vlinT)**1.18))
+         fsite = a12 * alog(vs/vlinT) - bT*alog(pga1000+c) + bT*alog(pga1000+c*((vs/vlinT)**1.18))
       else
          fsite = a12 * alog(vs/vlinT) - bT*1.18*alog(vs/vlinT)
       endif

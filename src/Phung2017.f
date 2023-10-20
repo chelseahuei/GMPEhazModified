@@ -3,7 +3,7 @@ c ------------------------------------------------------------------
 C *** Phung2020 Crust and Subduction Model- Horizontal ***********
 c ------------------------------------------------------------------            
 
-      Subroutine S04_PhungCrust2018 ( m, Rrup, Rbjf, specT, period2, lnY, sigma, iflag, 
+      Subroutine S04_PhungCrust2017 ( m, Rrup, Rbjf, specT, period2, lnY, sigma, iflag, 
      1                     vs, Delta, DTor, Ftype, depthvs10, vs30_class,
      2                       regionflag, phi, tau, HWflag, Rx )
 
@@ -564,7 +564,7 @@ c ------------------------------------------------------------------
 C *** Adjusted BCHydro model by Phung and Loh ***********
 c ------------------------------------------------------------------            
 
-      subroutine S04_PhungSub2018 ( mag, rRup, vs30, Z10, ZTor, lnY, sigma,  
+      subroutine S04_PhungSub2017 ( mag, rRup, vs30, Z10, ZTor, lnY, sigma,  
      2                     specT, period2, iflag, regionflag, ftype )
 
       implicit none

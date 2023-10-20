@@ -863,7 +863,7 @@ C     Path Scaling
 C     Site Effect
        fsite4pga = 0.9903 * alog(vs30/865.1) - 1.186*1.18*alog((vs30/865.1))
 
-      pga1000 = exp(fmag+fztor+frup+fsite4pga)
+      pga1000 = exp(fmag+fztor+frup)
 
 C.....Now compute the requested ground motion value........
 C     Magnitude Scaling

@@ -584,7 +584,7 @@ c ------------------------------------------------------------------
       real phisstjT,  phis2stjT, tau0T, a1twT, a4twT,  a7T, a6twT, a12twT, a8T
       real a11T, a10T, phisstwT, phis2stwT, tautwT, phitwT, bT, vlinT
    
-      real Ez1, fz10, fmag, frup, fsite, fztor, fevt
+      real Ez1, fz10, fmag, frup, fsite, fsite4pga, fztor, fevt
       real period1, a3, Z10, ZTor, a9, d, b12, lnY, Fs, a11si, a11ss, phiss, phis2s, a1, a4,a6,a12
       integer count1, count2, iflag, regionflag
       real n, c, c4, c1, faba, R, depth, specT, tau, phi, ftype, period2
@@ -861,9 +861,9 @@ C     Path Scaling
        frup = a1 + a7T*fevt +(a2T + a14T*fevt + a3*(mag - 7.8))*alog(R) + a6*rRup 
 
 C     Site Effect
-       fsite = 0.9903 * alog(vs/865.1) - 1.186*1.18*alog((vs/865.1))
+       fsite4pga = 0.9903 * alog(vs/865.1) - 1.186*1.18*alog((vs/865.1))
 
-      pga1000 = exp(fmag+fztor+frup+fsite)
+      pga1000 = exp(fmag+fztor+frup+fsite4pga)
 
 C.....Now compute the requested ground motion value........
 C     Magnitude Scaling

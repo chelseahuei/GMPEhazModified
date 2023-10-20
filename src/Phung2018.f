@@ -842,25 +842,25 @@ C  Regional term and  Basin Depth term
       
 C.....First compute the Reference Rock PGA value...........
 C     Magnitude Scaling
-      if (mag .le. MrefT ) then
-        fmag = a4*(mag-MrefT) + a13T*(10.0-mag)**2.0
+      if (mag .le. Mref(1) ) then
+        fmag = a4*(mag-Mref(1)) + a13(1)*(10.0-mag)**2.0
       else
-        fmag = a5T*(mag-MrefT) + a13T*(10.0-mag)**2.0
+        fmag = a5(1)*(mag-Mref(1)) + a13(1)*(10.0-mag)**2.0
       endif 
    
 C     Ztor Scaling        
       if  (ftype .eq. 0.0 ) then
-         fztor = a10T *(min(Ztor,40.0)-20)
+         fztor = a10(1) *(min(Ztor,40.0)-20)
       elseif (ftype .eq. 1.0 ) then
-         fztor = a11T *(min(Ztor,80.0)-40)
+         fztor = a11(1) *(min(Ztor,80.0)-40)
       endif
       
 C     Path Scaling
        R = rRup + c4*exp( (mag-6.0)*a9 ) 
-       frup = a1 + a7T*fevt +(a2T + a14T*fevt + a3*(mag - 7.8))*alog(R) + a6*rRup 
+       frup = a1(1) + a7(1)*fevt +(a2(1) + a14(1)*fevt + a3(1)*(mag - 7.8))*alog(R) + a6(1)*rRup 
 
 C     Site Effect
-       fsite4pga = 0.9903 * alog(vs30/865.1) - 1.186*1.18*alog((vs30/865.1))
+       fsite4pga = a12(1) * alog(vs30/vlin(1)) + b(1)*1.18*alog((vs30/vlin(1)))
 
       pga1000 = exp(fmag+fztor+frup+fsite4pga)
 

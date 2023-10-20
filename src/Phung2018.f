@@ -1,5 +1,5 @@
 c ------------------------------------------------------------------            
-C *** Phung2020 Crust and Subduction Model- Horizontal ***********
+C *** Phung2018 Crust and Subduction Model- Horizontal ***********
 c ------------------------------------------------------------------            
 
       Subroutine S04_PhungCrust2018 ( m, Rrup, Rbjf, specT, period2, lnY, sigma, iflag, 
@@ -576,15 +576,15 @@ c ------------------------------------------------------------------
 
       real a1tw(MAXPER), a4tw(MAXPER),  a7(MAXPER), a6tw(MAXPER), a12tw(MAXPER), a8(MAXPER),
      1     a11(MAXPER), a10(MAXPER),
-     1     phisstw(MAXPER), phis2stw(MAXPER), tautw(MAXPER), phitw(MAXPER), b(MAXPER), vlin(MAXPER)
+     1     phisstw(MAXPER), phis2stw(MAXPER), tautw(MAXPER), phitw(MAXPER)
 
-      real sigma, lnSa, pgaRock, vs30, rRup, disthypo, mag , vs, pga1000
+      real sigma, lnSa, pgaRock, vs30, rRup, disthypo, mag 
 
       real periodT, a5T, a13T, MrefT, a2T, a14T, dela1T, dela4T, a6jpT, a12jpT, a8jpT
       real phisstjT,  phis2stjT, tau0T, a1twT, a4twT,  a7T, a6twT, a12twT, a8T
-      real a11T, a10T, phisstwT, phis2stwT, tautwT, phitwT, bT, vlinT
+      real a11T, a10T, phisstwT, phis2stwT, tautwT, phitwT
    
-      real Ez1, fz10, fmag, frup, fsite, fztor, fevt, fsite4pga
+      real Ez1, fz10, fmag, frup, fsite, fztor, fevt
       real period1, a3, Z10, ZTor, a9, d, b12, lnY, Fs, a11si, a11ss, phiss, phis2s, a1, a4,a6,a12
       integer count1, count2, iflag, regionflag
       real n, c, c4, c1, faba, R, depth, specT, tau, phi, ftype, period2
@@ -630,9 +630,9 @@ c ------------------------------------------------------------------
       data phis2stj /  0.364038777, 0.364065617, 0.364403496, 0.417921293, 0.469674634, 0.469076147, 0.437340846, 0.397161802, 
      1             0.384511586, 0.373773022, 0.372643333, 0.369406327, 0.397812841, 0.419424271, 0.408446403, 0.420315802,  
      1            0.416797894, 0.404296599, 0.362727332, 0.354026172, 0.300771328 /  
-      data a1tw /  4.4642, 4.4819, 4.5046, 4.6252, 4.7904, 4.9262, 5.0950, 5.1811,  
-     1            5.1352, 5.0775, 4.9151, 4.7932, 4.6610, 4.4014, 3.7433, 2.8223,  
-     1            1.8833, 1.0148, 0.4117, -0.5199, -0.9236 /   
+      data a1tw /  4.481424147, 4.500413862, 4.524812489, 4.684812623, 4.81707322, 4.943259845, 5.09134277, 5.090645572,  
+     1            4.96517978, 4.84672774, 4.616816523, 4.435687208, 4.265016233, 3.916493523, 3.163705631, 2.254253444,  
+     1            1.320828841, 0.510914193, -0.121327899, -1.029553279, -1.391905014 /   
       data a4tw /  0.441987425, 0.442328411, 0.436082809, 0.363261281, 0.319469336, 0.325896968, 0.350561168, 0.401101385,  
      1            0.440779304, 0.486141867, 0.593885499, 0.719248494, 0.848115514, 0.96522535, 1.174894012, 1.360979471,  
      1            1.38307024, 1.382803719, 1.391730855, 1.36799257, 1.379913313 /  
@@ -642,12 +642,12 @@ c ------------------------------------------------------------------
       data a6tw /  -0.000639314, -0.000607826, -0.000577165, -0.000490096, -0.00042309, -0.000361045, -0.000251542,  
      1            -0.000161014, -8.90E-05, -3.54E-05, 1.45E-05, -4.21E-05, -7.26E-05, -0.000119483, -0.000199116,  
      1            -0.000362196, -0.000611716, -0.000869846, -0.00106641, -0.001185004, -0.0009885 /  
-      data a12tw /  0.9903, 0.9904, 0.9928, 1.3192, 1.502, 1.6376, 1.8934, 2.0873,  
-     1            2.2348, 2.3464, 2.4881, 2.5006, 2.4024, 2.0748, 1.4895, 0.3851, -0.4154,  
-     1            -0.7537, -0.7364, -0.6914, -0.7013 /  
-      data a8 / -0.0628, -0.063, -0.0633, -0.0887, -0.0941, -0.0978, -0.0855,  
-     1            -0.0707, -0.0605, -0.0537, -0.0143, 0.0296, 0.0627, 0.0894, 0.1248, 
-     1             0.1643, 0.1754, 0.1699, 0.1637, 0.1506, 0.1565 /  
+      data a12tw /  -0.4528715, -0.4516550, -0.4403449, -0.2766783, -0.2833841, -0.3205012, -0.4471684, -0.5552021,  
+     1            -0.6466667, -0.7124316, -0.7599690, -0.7702118, -0.8037457, -0.8730668, -0.9821700, -1.0045641, -0.9337591,  
+     1            -0.9174852, -0.9334706, -0.8808471, -0.9343411 /  
+      data a8 / -0.074484253, -0.074417449, -0.075013122, -0.105054464, -0.116912997, -0.116149188, -0.107454957,  
+     1            -0.091894335, -0.071460235, -0.056184877, -0.006874342, 0.040262618, 0.071577385, 0.090332895, 0.125873184, 
+     1             0.157605114, 0.159496266, 0.149672181, 0.129557502, 0.105217306, 0.103793858 /  
       data a10 / 0.016025291, 0.017193978, 0.01828222, 0.020842842, 0.022162011, 0.022757257, 0.021797461, 0.020180594,  
      1            0.018556649, 0.016978648, 0.014555899, 0.012627818, 0.011191399, 0.009211979, 0.006851124, 0.003814084,  
      1            0.001733925, 0, 0, 0, 0 /  
@@ -663,15 +663,9 @@ c ------------------------------------------------------------------
       data phis2stw /  0.342245626, 0.342125322, 0.34182419, 0.392290454, 0.441948427, 0.450860943, 0.409095063, 0.374262742, 
      1             0.352612548, 0.342556195, 0.34961642, 0.351721641, 0.380666872, 0.396790672, 0.384546494, 0.38643462,  
      1            0.383847635, 0.37473218, 0.351739376, 0.343596247, 0.348349141 /  
-      data b / -1.186, -1.186, -1.186, -1.346, -1.471, -1.624, -1.931, -2.188,  
-     1            -2.381, -2.518, -2.657, -2.669, -2.599, -2.401, -1.955, -1.025,  
-     1            -2.099, 0, 0, 0, 0 /  
-      data vlin / 865.1, 865.1, 865.1, 1053.5, 1085.7, 1032.5, 877.6, 748.2, 654.3, 587.1, 503, 456.6, 430.3, 410.5,  
-     1            400, 400, 400, 400, 400, 400, 400 /  
-
+  
 C Constant parameters            
 
-      c = 1.88
       c4 = 10
       a3 = 0.1
       a9 = 0.25
@@ -713,9 +707,7 @@ C First check for the PGA case
          phisstwT =   phisstw(i1)   
          phis2stwT =  phis2stw(i1)  
          tautwT =     tautw(i1)     
-         phitwT =     phitw(i1) 
-	 bT = b(i1)
-  	 vlinT = vlin(i1)
+         phitwT =     phitw(i1)     
 
          goto 1011
       endif
@@ -798,12 +790,7 @@ C Interpolate the coefficients for the requested spectral period.
       call S24_interp (period(count1),period(count2),phisstw(count1), phisstw(count2),
      +                 specT, phisstwT, iflag)
       call S24_interp (period(count1),period(count2),phis2stw(count1), phis2stw(count2),
-     +                 specT, phis2stwT, iflag)  
-      call S24_interp (period(count1),period(count2),b(count1), b(count2),
-     +                 specT, bT, iflag)       
-      call S24_interp (period(count1),period(count2),vlin(count1), vlin(count2),
-     +                 specT, vlinT, iflag)       
-
+     +                 specT, phis2stwT, iflag)       
 
 
  1011 period1 = specT                                                                                                              
@@ -839,32 +826,7 @@ C  Regional term and  Basin Depth term
         phis2s = phis2stwT
   
       endif
-      
-C.....First compute the Reference Rock PGA value...........
-C     Magnitude Scaling
-      if (mag .le. Mref(1) ) then
-        fmag = a4*(mag-Mref(1)) + a13(1)*(10.0-mag)**2.0
-      else
-        fmag = a5(1)*(mag-Mref(1)) + a13(1)*(10.0-mag)**2.0
-      endif 
-   
-C     Ztor Scaling        
-      if  (ftype .eq. 0.0 ) then
-         fztor = a10(1) *(min(Ztor,40.0)-20)
-      elseif (ftype .eq. 1.0 ) then
-         fztor = a11(1) *(min(Ztor,80.0)-40)
-      endif
-      
-C     Path Scaling
-       R = rRup + c4*exp( (mag-6.0)*a9 ) 
-       frup = a1(1) + a7(1)*fevt +(a2(1) + a14(1)*fevt + a3(1)*(mag - 7.8))*alog(R) + a6(1)*rRup 
 
-C     Site Effect
-       fsite4pga = a12(1) * alog(vs30/vlin(1)) + b(1)*1.18*alog((vs30/vlin(1)))
-
-      pga1000 = exp(fmag+fztor+frup+fsite4pga)
-
-C.....Now compute the requested ground motion value........
 C     Magnitude Scaling
       if (mag .le. MrefT ) then
         fmag = a4*(mag-MrefT) + a13T*(10.0-mag)**2.0
@@ -884,23 +846,18 @@ C     Path Scaling
        frup = a1 + a7T*fevt +(a2T + a14T*fevt + a3*(mag - 7.8))*alog(R) + a6*rRup 
      
 C     Site Effect
-      vs = min(vs30,1000.0)
-      if  (vs30 .lt. vlinT ) then
-         fsite = a12 * alog(vs/vlinT) - bT*alog(pga1000+c) + bT*alog(pga1000+c*((vs/vlinT)**1.18))
-      else
-         fsite = a12 * alog(vs/vlinT) - bT*1.18*alog(vs/vlinT)
-      endif
+       fsite = a12*min(alog(vs30/760.0),0.0)
 
 C   Basin Depth term
       if(regionflag .eq. 1) then
        
-        Ez1 = exp(-3.96/2.0 * alog((vs30**2.0 + 352.7**2.0)/(1750.0**2.0 + 352.7**2.0)))
-        fz10 = a8T*(min(alog(Z10*1000/Ez1),1.0))     
+        Ez1 = exp(-4.06/2.0 * alog((vs30**2.0 + 352.7**2.0)/(1750.0**2.0 + 352.7**2.0)))
+        fz10 = a8T*(min(alog(Z10*1000.0/Ez1),0.0))     
   
       else
   
         Ez1 = exp(-5.23/2.0 * alog((vs30**2.0 + 412.39**2.0)/(1360.0**2.0 + 412.39**2.0)))
-        fz10 = a8jpT*(min(alog(Z10*1000/Ez1),1.0))     
+        fz10 = a8jpT*(min(alog(Z10*1000.0/Ez1),0.0))     
   
       endif       
 

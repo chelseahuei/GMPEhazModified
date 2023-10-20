@@ -858,7 +858,7 @@ C     Ztor Scaling
       
 C     Path Scaling
        R = rRup + c4*exp( (mag-6.0)*a9 ) 
-       frup = a1(1) + a7(1)*fevt +(a2(1) + a14(1)*fevt + a3(1)*(mag - 7.8))*alog(R) + a6(1)*rRup 
+       frup = a1(1) + a7(1)*fevt +(a2(1) + a14(1)*fevt + a3*(mag - 7.8))*alog(R) + a6(1)*rRup 
 
 C     Site Effect
        fsite4pga = a12(1) * alog(vs30/vlin(1)) + b(1)*1.18*alog((vs30/vlin(1)))

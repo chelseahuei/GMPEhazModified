@@ -576,15 +576,15 @@ c ------------------------------------------------------------------
 
       real a1tw(MAXPER), a4tw(MAXPER),  a7(MAXPER), a6tw(MAXPER), a12tw(MAXPER), a8(MAXPER),
      1     a11(MAXPER), a10(MAXPER),
-     1     phisstw(MAXPER), phis2stw(MAXPER), tautw(MAXPER), phitw(MAXPER), b(MAXPER), vlin(MAXPER)
+     1     phisstw(MAXPER), phis2stw(MAXPER), tautw(MAXPER), phitw(MAXPER), b(MAXPER)
 
-      real sigma, lnSa, pgaRock, vs30, rRup, disthypo, mag , vs, pga1000
+      real sigma, lnSa, pgaRock, vs30, rRup, disthypo, mag , vs, vlin, pga1000
 
       real periodT, a5T, a13T, MrefT, a2T, a14T, dela1T, dela4T, a6jpT, a12jpT, a8jpT
       real phisstjT,  phis2stjT, tau0T, a1twT, a4twT,  a7T, a6twT, a12twT, a8T
-      real a11T, a10T, phisstwT, phis2stwT, tautwT, phitwT, bT, vlinT
+      real a11T, a10T, phisstwT, phis2stwT, tautwT, phitwT, bT
    
-      real Ez1, fz10, fmag, frup, fsite, fsite4pga, fztor, fevt
+      real Ez1, fz10, fmag, frup, fsite, fztor, fevt
       real period1, a3, Z10, ZTor, a9, d, b12, lnY, Fs, a11si, a11ss, phiss, phis2s, a1, a4,a6,a12
       integer count1, count2, iflag, regionflag
       real n, c, c4, c1, faba, R, depth, specT, tau, phi, ftype, period2
@@ -666,9 +666,8 @@ c ------------------------------------------------------------------
       data b / -1.186, -1.186, -1.186, -1.346, -1.471, -1.624, -1.931, -2.188,  
      1            -2.381, -2.518, -2.657, -2.669, -2.599, -2.401, -1.955, -1.025,  
      1            -2.099, 0, 0, 0, 0 /  
-      data vlin / 865.1, 865.1, 865.1, 1053.5, 1085.7, 1085.7, 877.6, 748.2,  
-     1            654.3, 587.1, 503, 456.6, 430.3, 410.5, 400, 400,  
-     1            400, 400, 400, 400, 400 /  
+      data vlin / 865.1, 865.1, 865.1, 1053.5, 1085.7, 1032.5, 877.6, 748.2, 654.3, 587.1, 503, 456.6, 430.3, 410.5,  
+     1            400, 400, 400, 400, 400, 400, 400 /  
 
 C Constant parameters            
 
@@ -859,7 +858,9 @@ C     Ztor Scaling
 C     Path Scaling
        R = rRup + c4*exp( (mag-6.0)*a9 ) 
        frup = a1 + a7T*fevt +(a2T + a14T*fevt + a3*(mag - 7.8))*alog(R) + a6*rRup 
+
       pga1000 = exp(fmag+fztor+frup)
+
 C.....Now compute the requested ground motion value........
 C     Magnitude Scaling
       if (mag .le. MrefT ) then
@@ -882,10 +883,11 @@ C     Path Scaling
 C     Site Effect
       vs = min(vs30,1000.0)
       if  (vs30 .lt. vlinT ) then
-         fsite = a12 * alog(vs/vlinT) - bT*alog(pga1000+c) + bT*alog(pga1000+c*((vs/vlinT)**1.18))
+         fsite = a12 * alog(vs/vlinT) - bT*alog(PGA1000+c) + bT*alog(pga1000+c*((vs/vlinT)**1.18))
       else
          fsite = a12 * alog(vs/vlinT) - bT*1.18*alog(vs/vlinT)
       endif
+
 C   Basin Depth term
       if(regionflag .eq. 1) then
        
@@ -898,6 +900,8 @@ C   Basin Depth term
         fz10 = a8jpT*(min(alog(Z10*1000/Ez1),1.0))     
   
       endif       
+
+
        lnSa = fmag + frup + fztor + fsite + fz10 
    
 C     Set sigma values to return

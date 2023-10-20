@@ -859,12 +859,7 @@ C     Ztor Scaling
 C     Path Scaling
        R = rRup + c4*exp( (mag-6.0)*a9 ) 
        frup = a1 + a7T*fevt +(a2T + a14T*fevt + a3*(mag - 7.8))*alog(R) + a6*rRup 
-
-C     Site Effect
-       fsite4pga = 0.9903 * alog(vs30/865.1) - 1.186*1.18*alog((vs30/865.1))
-
       pga1000 = exp(fmag+fztor+frup)
-
 C.....Now compute the requested ground motion value........
 C     Magnitude Scaling
       if (mag .le. MrefT ) then
@@ -891,7 +886,6 @@ C     Site Effect
       else
          fsite = a12 * alog(vs/vlinT) - bT*1.18*alog(vs/vlinT)
       endif
-
 C   Basin Depth term
       if(regionflag .eq. 1) then
        
@@ -904,8 +898,6 @@ C   Basin Depth term
         fz10 = a8jpT*(min(alog(Z10*1000/Ez1),1.0))     
   
       endif       
-
-
        lnSa = fmag + frup + fztor + fsite + fz10 
    
 C     Set sigma values to return

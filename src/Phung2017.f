@@ -467,10 +467,10 @@ c Distance scaling at large distance
 c Scaling with other source variables (F_RV, F_NM, deltaZ_TOR, and Dip)
         coshM = cosh(2*max(M-4.5,0.0))
         cosDELTA = cos(DELTA*d2r)
-        term2 = (c1aT+c1cT/cosh(2*max(M-4.5),0.0)) * F_RV 
-        term3 = (c1bT+c1dT/cosh(2*max(M-4.5),0.0)) * F_NM 
-        term4 = (c7T +c7bT/cosh(2*max(M-4.5),0.0)) * deltaZ_TOR 
-        term5 = (c11T+c11bT/cosh(2*max(M-4.5),0.0))* cosDELTA**2   
+        term2 = (c1aT+c1cT/cosh(2*max(M-4.5,0.0))) * F_RV 
+        term3 = (c1bT+c1dT/cosh(2*max(M-4.5,0.0))) * F_NM 
+        term4 = (c7T +c7bT/cosh(2*max(M-4.5,0.0))) * deltaZ_TOR 
+        term5 = (c11T+c11bT/cosh(2*max(M-4.5,0.0)))* cosDELTA**2   
 
 c HW effect 
         if (HWFlag .eq. 0) then

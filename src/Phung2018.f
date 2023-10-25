@@ -3,7 +3,7 @@ c ------------------------------------------------------------------
 C *** Phung2020 Crust and Subduction Model- Horizontal ***********
 c ------------------------------------------------------------------            
 
-      Subroutine S04_PhungCrust2017 ( m, Rrup, Rbjf, specT, period2, lnY, sigma, iflag, 
+      Subroutine S04_PhungCrust2018 ( m, Rrup, Rbjf, specT, period2, lnY, sigma, iflag, 
      1                     vs, Delta, DTor, Ftype, depthvs10, vs30_class,
      2                       regionflag, phi, tau, HWflag, Rx )
 

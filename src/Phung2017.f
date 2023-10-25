@@ -467,10 +467,10 @@ c Distance scaling at large distance
 c Scaling with other source variables (F_RV, F_NM, deltaZ_TOR, and Dip)
         coshM = cosh(2*max(M-4.5,0.0))
         cosDELTA = cos(DELTA*d2r)
-        term2 = (c1aT+c1cT/coshM) * F_RV 
-        term3 = (c1bT+c1dT/coshM) * F_NM 
-        term4 = (c7T +c7bT/coshM) * deltaZ_TOR 
-        term5 = (c11T+c11bT/coshM)* cosDELTA**2   
+        term2 = (c1aT+c1cT/cosh(2*max(M-4.5),0.0)) * F_RV 
+        term3 = (c1bT+c1dT/cosh(2*max(M-4.5),0.0)) * F_NM 
+        term4 = (c7T +c7bT/cosh(2*max(M-4.5),0.0)) * deltaZ_TOR 
+        term5 = (c11T+c11bT/cosh(2*max(M-4.5),0.0))* cosDELTA**2   
 
 c HW effect 
         if (HWFlag .eq. 0) then
@@ -485,7 +485,7 @@ C     Current version of the code sets dDPP=0 (i.e., no directivity)
 c Directivity effect
         dDPP = 0.0
         term11 = c8T * exp(-c8a * (M-c8bT)**2) *
-     1       max(0.0, 1.0-max(0.0,Rrup-40.0)/30.0) *
+     1       max((1.0-max(Rrup-40.0,0.0)/30.0),0.0) *
      1       min(max(0.0,M-5.5)/0.8, 1.0) * dDPP
        
 c Predicted median Sa on reference condition (Vs=1130 m/sec)
@@ -501,9 +501,8 @@ c Nonlinear soil amplification
      1      alog((psa_ref+phi4T)/phi4T)
 
 C Deviation from ln(Vs30) scaling: bedrock depth (Z1) effect.
-        Ez1 = exp(-2.63/4.0 * alog((VS**4.0 + 253.0**4.0)/(2492.0**4.0 + 253.0**4.0)))
+        Ez1 = exp(-3.73/2.0 * alog((VS**2.0 + 290.53**2.0)/(1750.0**2.0 + 290.53**2.0)))
         deltaZ1 = depthvs10*1000.0 - Ez1
-C     1    exp(-2.63/4.0 * alog((VS**4.0 + 253.0**4.0)/(2492.0**4.0 + 253.0**4.0)))
  
         if (regionflag .eq. 0) then
             term16 = 0.0

@@ -24,8 +24,8 @@
 #' PhungCru17(7, 20, 0, 760, 90, 0, 0, 0.5, 1, 0,  1)
 #'
 #' @export
-PhungCru17 <- function(Mag, Rrup, Prd, Vs30, Dip, Ztor, ftype=0, Z1.0, Vs30_class=1,
-                       msasflag = 0, regionflag=1){
+PhungCru17 <- function(Mag, Rrup, Rjb, Rx, Prd, Vs30, Dip, Ztor, ftype=0, Z1.0, Vs30_class=1,
+                       regionflag=1, hwflag=0){
   #     fType     Mechanism                      Rake
   #------------------------------------------------------#
   #      -1       Normal                   -120 < Rake < -60.0
@@ -37,20 +37,22 @@ PhungCru17 <- function(Mag, Rrup, Prd, Vs30, Dip, Ztor, ftype=0, Z1.0, Vs30_clas
   #     Apply Regional scaling factor.
   #     Regionflag = 0 Global
   #     Regionflag = 1 Taiwan
-  #Subroutine PhungCrust2017 ( m, Rrup, specT, period2, lnY, sigma, iflag,
-  #                            vs, Delta, DTor, Ftype, depthvs10, vs30_class,
-  #                           regionflag, msasflag, phi, tau )
+  # Subroutine S04_PhungCrust2018 ( m, Rrup, Rbjf, specT, period2, lnY, sigma, iflag,
+  #                                 vs, Delta, DTor, Ftype, depthvs10, vs30_class,
+  #                                 regionflag, phi, tau, HWflag, Rx )
   if (Prd != 0 & (Prd < 0.01 | Prd > 5)) {
     stop("Period out of range! \n\n")
   }
-  retvals <- .Fortran("S04_PhungCrust2017", m=as.single(Mag), Rrup=as.single(Rrup), specT=as.single(Prd),
+  retvals <- .Fortran("S04_PhungCrust2017", m=as.single(Mag), Rrup=as.single(Rrup), Rbjf=as.single(Rjb), specT=as.single(Prd),
                       period2=as.single(0), lnY=as.single(0.1), sigma=as.single(0.1), iflag=as.integer(0),
                       vs=as.single(Vs30), Delta=as.single(Dip), DTor=as.single(Ztor), Ftype=as.single(ftype),
                       depthvs10=as.single(Z1.0), vs30_class=as.integer(Vs30_class),
-                      regionflag=as.integer(regionflag), msasflag=as.integer(0), phi=as.single(0.0), tau=as.single(0.0))
+                      regionflag=as.integer(regionflag), phi=as.single(0.0), tau=as.single(0.0), HWflag=as.integer(hwflag),
+                      Rx = as.single(Rx))
 
-  names(retvals) <- c("mag", "Rrup", "specT", "period", "lnY", "sigma", "iflag", "Vs30",
-                      "dip", "Ztor", "ftype", "Z1.0", "vs30_class", "regionflag", "msasflag", "phi", "tau")
+  names(retvals) <- c("mag", "Rrup", "Rjb","specT", "period", "lnY", "sigma", "iflag", "Vs30",
+                      "dip", "Ztor", "ftype", "Z1.0", "vs30_class", "regionflag", "phi", "tau", "hwflag", "Rx")
 
   return(retvals)
 }
+

@@ -1,13 +1,13 @@
 c ----------------------------------------------------------------------
       subroutine S35_PSHAB2019 ( mag, Ftype, rRup, vs30, z25, lnY, sigma, phi, tau,
-     2                     specT, period2, iflag, depth, disthypo, iRegion, mbInter, mbSlab, pnwbflag )
+     2                     specT, period2, iflag, depth, disthypo, region, mbInter, mbSlab, pnwbflag )
 
 C     Model Version: December 16, 2020
 
       implicit none
       integer MAXPER
       parameter (MAXPER=26)
-      integer count1, count2, iflag, nPer, i1, i, iRegion, pnwbflag
+      integer count1, count2, iflag, nPer, i1, i, region, pnwbflag
 
       real Period(MAXPER), c1(MAXPER), c1Slab(MAXPER), c4(MAXPER), c5(MAXPER), C6(MAXPER),
      1     f4(MAXPER), f5(MAXPER), Vc(MAXPER),
@@ -642,7 +642,7 @@ c     7=Northern South America
 c     8=Southern South America
 c     9=Taiwan
 
-      if (iRegion .eq. 0) then
+      if (region .eq. 0) then
          if (ftype .eq. 0.0) then
             c0T = Global_c0T
             c0Pga = Global_c0(1)
@@ -655,7 +655,7 @@ c     9=Taiwan
             a0Pga = Global_a0slab(1)
          endif
          cT = Global_cT
-      elseif (iRegion .eq. 1) then
+      elseif (region .eq. 1) then
          if (ftype .eq. 0.0) then
             c0T = Alaska_c0T
             c0Pga = Alaska_c0(1)
@@ -668,7 +668,7 @@ c     9=Taiwan
             a0Pga = Alaska_a0slab(1)
          endif
          cT = Alaska_cT
-      elseif (iRegion .eq. 2) then
+      elseif (region .eq. 2) then
          if (ftype .eq. 0.0) then
             c0T = Aleutian_c0T
             c0Pga = Aleutian_c0(1)
@@ -681,7 +681,7 @@ c     9=Taiwan
             a0Pga = Alaska_a0slab(1)
          endif
          cT = Alaska_cT
-      elseif (iRegion .eq. 3) then
+      elseif (region .eq. 3) then
          if (ftype .eq. 0.0) then
             c0T = Cascadia_c0T
             c0Pga = Cascadia_c0(1)
@@ -694,7 +694,7 @@ c     9=Taiwan
             a0Pga = Cascadia_a0Slab(1)
          endif
          cT = Cascadia_cT
-      elseif (iRegion .eq. 4) then
+      elseif (region .eq. 4) then
          if (ftype .eq. 0.0) then
             c0T = CAM_c0T
             c0Pga = CAM_c0(1)
@@ -707,7 +707,7 @@ c     9=Taiwan
             a0Pga = CAM_a0slab(1)
          endif
          cT = Global_cT
-      elseif (iRegion .eq. 5) then
+      elseif (region .eq. 5) then
          if (ftype .eq. 0.0) then
             c0T = Japan_Pac_c0T
             c0Pga = Japan_Pac_c0(1)
@@ -720,7 +720,7 @@ c     9=Taiwan
             a0Pga = Japan_a0slab(1)
          endif
          cT = Japan_cT
-      elseif (iRegion .eq. 6) then
+      elseif (region .eq. 6) then
          if (ftype .eq. 0.0) then
             c0T = Japan_Phi_c0T
             c0Pga = Japan_Phi_c0(1)
@@ -733,7 +733,7 @@ c     9=Taiwan
             a0Pga = Japan_a0slab(1)
          endif
          cT = Japan_cT
-      elseif (iRegion .eq. 7) then
+      elseif (region .eq. 7) then
          if (ftype .eq. 0.0) then
             c0T = SAN_c0T
             c0Pga = SAN_c0(1)
@@ -746,7 +746,7 @@ c     9=Taiwan
             a0Pga = SA_a0slab(1)
          endif
          cT = SA_cT
-      elseif (iRegion .eq. 8) then
+      elseif (region .eq. 8) then
          if (ftype .eq. 0.0) then
             c0T = SAS_c0T
             c0Pga = SAS_c0(1)
@@ -759,7 +759,7 @@ c     9=Taiwan
             a0Pga = SA_a0slab(1)
          endif
          cT = SA_cT
-      elseif (iRegion .eq. 9) then
+      elseif (region .eq. 9) then
          if (ftype .eq. 0.0) then
             c0T = Taiwan_c0T
             c0Pga = Taiwan_c0(1)
@@ -840,9 +840,9 @@ C     Now compute the ground motion for given Vs30 value.
 
 C     Compute the linear Flin term.
       if (Vs30 .le. V1) then
-         if (iRegion .eq. 5)then
+         if (region .eq. 5)then
             Flin = Japan_c1T*alog(Vs30/V1) + cT*alog(V1/Vref)
-         elseif (iRegion .eq. 8) then
+         elseif (region .eq. 8) then
             Flin = Taiwan_c1T*alog(Vs30/V1) + cT*alog(V1/Vref)
          else
             Flin = cT*alog(Vs30/V1) + cT*alog(V1/Vref)
@@ -866,7 +866,7 @@ c      endif
 C     Compute the basin term
 C     Cascadia Basin Terms
 c      z25 = z25
-      if (iRegion .eq. 3) then
+      if (region .eq. 3) then
           x = (alog10(vs30) - alog10(500.0) ) / (0.42*sqrt(2.0))
           muz25 = 10**(3.75-0.74*(1+erf(x)))
           deltaz25 = alog(z25*1000.0) - alog(muz25)
@@ -892,7 +892,7 @@ C     Note values of 0 and 1 are for previous models not currently recommended.
           endif
 
 C     Japan Basin Terms
-      elseif (iRegion .eq. 5 .or. iRegion .eq. 6) then
+      elseif (region .eq. 5 .or. region .eq. 6) then
           x = (alog10(vs30) - alog10(500.0) ) / (0.33*sqrt(2.0))
           muz25 = 10**(3.05-0.8*(1+erf(x)))
           deltaz25 = alog(z25*1000.0) - alog(muz25)

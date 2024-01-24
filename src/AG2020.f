@@ -2,7 +2,7 @@ c  ***** PEER NGASubduction Models (2019/2020) **********
 
 c ----------------------------------------------------------------------
       subroutine S35_AG2020 ( mag, evType, rRup, vs30, z25, ztor, region, mu, sigma, phi, tau,
-     1            rockPGA, specT, period2, iFlag, ACadjfac, epiflag )
+     1            rockPGA, specT, period2, iflag, ACadjfac, epiflag )
 
 C     Model Version: March 16, 2021 - PEER Report Version
 C     PGA (T=0.0) set equal to T=0.01 coefficients

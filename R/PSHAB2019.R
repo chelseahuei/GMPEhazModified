@@ -34,10 +34,10 @@ PSHAB2019 <- function(Mag, Rrup, Prd, ftype=0, Vs30, z25, depth, Rhypo, region=7
   retvals <- .Fortran("S35_PSHAB2019", mag=as.single(Mag), Ftype=as.single(ftype), rRup=as.single(Rrup),
                       vs30=as.single(Vs30), z25=as.single(z25), lnY=as.single(0.0), sigma=as.single(0.1), 
                       phi=as.single(0.0), tau=as.single(0.0), specT=as.single(Prd), period2=as.single(0), 
-                      iflag=as.integer(1), depth=as.single(depth), disthypo=as.single(Rhypo), region=as.integer(region), 
+                      iflag=as.integer(1), depth=as.single(depth), Rhypo=as.single(Rhypo), region=as.integer(region), 
                       mbInter=as.single(0), mbSlab=as.single(0), pnwflag=as.integer(pnwflag))
   names(retvals) <- c("mag", "Ftype", "rRup", "vs30", "z25", "lnY", "sigma", "phi", "tau",
-                      "specT", "period2", "iflag", "depth", "disthypo", "region", "mbInter", 
+                      "specT", "period2", "iflag", "depth", "Rhypo", "region", "mbInter", 
                       "mbSlab", "pnwflag")
   return(retvals)
 }

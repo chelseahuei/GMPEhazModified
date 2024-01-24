@@ -1,5 +1,5 @@
 c ----------------------------------------------------------------------
-     subroutine S35_KBCG2019 ( mag, Ftype, rRup, vs30, z25, lnSa, sigma, phi, tau,
+      subroutine S35_KBCG2019 ( mag, Ftype, rRup, vs30, z25, lnSa, sigma, phi, tau,
      2                     specT, period2, iflag, depth, disthypo, iRegion, mbInter, mbSlab, ztor, CasBas, Z10 )
 
       implicit none

@@ -34,7 +34,7 @@ AG2020 <- function(Mag, Rrup, Prd, ftype=0, Vs30, z25, ztor, region=7, epiflag=1
                       vs30=as.single(Vs30), z25=as.single(z25), ztor=as.single(ztor), region=as.single(region),
                       mu=as.single(0.0), sigma=as.single(0.1), phi=as.single(0.0), tau=as.single(0.0), 
                       rockPGA=as.single(0), specT=as.single(Prd), period2=as.single(0), iflag=as.integer(1),
-                      ACadjfac=as.single(0), epiflag=as.single(epiflag))
+                      ACadjfac=as.single(0), epiflag=as.integer(epiflag))
   names(retvals) <- c("mag", "evType", "rRup", "vs30", "z25", "ztor", "region", "mu", "sigma", "phi", "tau",
                       "rockPGA", "specT", "period2", "iFlag", "ACadjfac", "epiflag")
   return(retvals)

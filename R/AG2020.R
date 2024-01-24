@@ -17,7 +17,7 @@
 #' @param epiflag .
 #'
 #' @return A list will be return, including mag, evType, rRup, vs30, z25, ztor, region, mu, sigma, phi, tau,
-#'                                          rockPGA, specT, period2, iFlag, ACadjfac, epiflag.
+#'                                          rockPGA, specT, period2, iflag, ACadjfac, epiflag.
 #'
 #' @examples
 #' AG2020(6, 20, 0, 0, 760, 1, 10, 7, 1)
@@ -29,13 +29,13 @@ AG2020 <- function(Mag, Rrup, Prd, ftype=0, Vs30, z25, ztor, region=7, epiflag=1
     stop("Period out of range! \n\n")
   }
   #AG2020 ( mag, evType, rRup, vs30, z25, ztor, region, mu, sigma, phi, tau,
-  #             rockPGA, specT, period2, iFlag, ACadjfac, epiflag )
+  #             rockPGA, specT, period2, iflag, ACadjfac, epiflag )
   retvals <- .Fortran("S35_AG2020", mag=as.single(Mag), evType=as.single(ftype), rRup=as.single(Rrup),
                       vs30=as.single(Vs30), z25=as.single(z25), ztor=as.single(ztor), region=as.single(region),
                       mu=as.single(0.0), sigma=as.single(0.1), phi=as.single(0.0), tau=as.single(0.0), 
                       rockPGA=as.single(0), specT=as.single(Prd), period2=as.single(0), iflag=as.integer(1),
                       ACadjfac=as.single(0), epiflag=as.integer(epiflag))
   names(retvals) <- c("mag", "evType", "rRup", "vs30", "z25", "ztor", "region", "mu", "sigma", "phi", "tau",
-                      "rockPGA", "specT", "period2", "iFlag", "ACadjfac", "epiflag")
+                      "rockPGA", "specT", "period2", "iflag", "ACadjfac", "epiflag")
   return(retvals)
 }

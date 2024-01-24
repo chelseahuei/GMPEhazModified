@@ -1,5 +1,5 @@
 c ----------------------------------------------------------------------
-      subroutine S35_KBCG2019 ( mag, Ftype, rRup, vs30, z25, lnSa, sigma, phi, tau,
+      subroutine S35_KBCG2019 ( mag, Ftype, rRup, vs30, z25, lnY, sigma, phi, tau,
      2                     specT, period2, iflag, depth, disthypo, iRegion, mbInter, mbSlab, ztor, CasBas, Z10 )
 
       implicit none
@@ -38,7 +38,7 @@ c ----------------------------------------------------------------------
       real delta_mb_BCH
       real theta1RegT, theta6RegT, theta7RegT
       real h, hpga, ztor
-      real sigma, lnSa, pgaRock, vs30, rRup, disthypo, mag, depth, Ftype
+      real sigma, lnY, pgaRock, vs30, rRup, disthypo, mag, depth, Ftype
       real period2, specT, z25, phi, tau, mbinter, mbslab
       real fconst, fmag, fgeom, fdepth, fatten, fsite
       real fconstPga, fmagPGa, fgeomPga, fdepthPGA, fattenPGA, fsitePGA
@@ -873,19 +873,19 @@ C     Add in Cascadia non-Seattle Basin Factor not to exceed Seattle Basin Facto
       endif
 
 C     Compute the site specific ground motion
-      lnSA = fconst + fmag + fgeom + fdepth + fatten + fsite + fbasin
+      lnY = fconst + fmag + fgeom + fdepth + fatten + fsite + fbasin
       lnPGA = fconstPGA + fmagPGA + fgeomPGA + fdepthPGA + fattenPGA + fsitePGA + fbasinPGA
 
 C     Check that PSA > PGA for T < 0.1sec
 C     In cases where PSA < PGA, then set PSA = PGA
       if (specT .lt. 0.1) then
-         if (lnSA .lt. lnPGA ) then
-            lnSA = lnPGA
+         if (lnY .lt. lnPGA ) then
+            lnY = lnPGA
          endif
       endif
 
 c     Convert units spectral acceleration in gal
-      lnSa = lnSa + 6.89
+      lnY = lnY + 6.89
 
 C     Set sigma values to return
       sigma = sqrt(sigPhiT*sigPhiT + sigTauT*sigTauT)

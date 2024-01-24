@@ -4,7 +4,7 @@
 \alias{AG2020}
 \title{GMPE function for Abrahamson and Gülerce et al.(2020)}
 \usage{
-AG2020(Mag, Rrup, Prd, ftype=0, Vs30, z25, ztor, region=7)
+AG2020(Mag, Rrup, Prd, ftype=0, Vs30, z25, ztor, region=7, epiflag=1)
 }
 \arguments{
 \item{Mag}{Earthquake momnet magnitude, Numeric.}
@@ -22,6 +22,8 @@ AG2020(Mag, Rrup, Prd, ftype=0, Vs30, z25, ztor, region=7)
 \item{ztor}{(km).}
 
 \item{region}{regional flag, region=7 for Taiwan, region=8 for Global.}
+
+\item{epiflag}{.}
 }
 \value{
 A list will be return, including mag, evType, rRup, vs30, z25, ztor, region, mu, sigma, phi, tau, rockPGA, specT, period2, iFlag, ACadjfac, epiflag.
@@ -35,7 +37,7 @@ Subduction Earthquakes Based on the NGA-SUB Database, PEER Report No. 2020/25.
 \url{http://dx.doi.org/10.1193/051712EQS188MR}
 }
 \examples{
-AG2020(6, 20, 0, 0, 760, 1, 10, 7)
-AG2020(7, 10, 0, 0, 760, 1, 10, 7)
+AG2020(6, 20, 0, 0, 760, 1, 10, 7, 1)
+AG2020(7, 10, 0, 0, 760, 1, 10, 7, 1)
 
 }

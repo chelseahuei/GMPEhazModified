@@ -1,5 +1,5 @@
 c ----------------------------------------------------------------------
-      subroutine S35_PSHAB2019 ( mag, Ftype, rRup, vs30, z25, lnSa, sigma, phi, tau,
+      subroutine S35_PSHAB2019 ( mag, Ftype, rRup, vs30, z25, lnY, sigma, phi, tau,
      2                     specT, period2, iflag, depth, disthypo, iRegion, mbInter, mbSlab, pnwbflag )
 
 C     Model Version: December 16, 2020
@@ -41,7 +41,7 @@ C     Model Version: December 16, 2020
      1     Japan_a0SlabT, SA_a0SlabT, Taiwan_a0SlabT, Global_a0SlabT
       real a0Pga, c0Pga, fpPga, fmPga, fdPga, x
 
-      real sigma, lnSa, pgaRock, vs30, rRup, disthypo, mag, depth, Ftype
+      real sigma, lnY, pgaRock, vs30, rRup, disthypo, mag, depth, Ftype
       real period2, specT, z25
       real b4, f1, f3, Vb, Vref, mbInter, mbslab
       real Fm, Fp, Fd, Fs, Flin, Fnl, f2, db1, h, R, Rref, muz25, deltaz25, fb, cas_e3TBasin, cas_e2TBasin
@@ -908,11 +908,11 @@ C     Japan Basin Terms
          fb = 0.0
       endif
 C     Compute the site specific ground motion
-      lnSA = c0T + Fp + Fm + Fd + Fs + Fb
+      lnY = c0T + Fp + Fm + Fd + Fs + Fb
 
 c     Convert units spectral acceleration in gal
       if (spect .ne. -1.0) then
-         lnSa = lnSa + 6.89
+         lnY = lnY + 6.89
       endif
 
 C     Compute sigma values

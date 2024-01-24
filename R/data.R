@@ -24,6 +24,12 @@
 #'
 "cnames.AC10"
 
+#' Variable name of AG2020 GMPEs.
+#'
+#' @format Vectors of AG2020 GMPE.
+#'
+"cnames.AG2020"
+
 #' Variable name of AGA16.tw.C01 GMPEs.
 #'
 #' @format Vectors of AGA16.tw.C01 GMPE.

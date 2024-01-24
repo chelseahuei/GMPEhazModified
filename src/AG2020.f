@@ -1,7 +1,7 @@
 c  ***** PEER NGASubduction Models (2019/2020) **********
 
 c ----------------------------------------------------------------------
-      subroutine S35_AG2020 ( mag, evType, rRup, vs30, z25, ztor, region, mu, sigma, phi, tau,
+      subroutine S35_AG2020 ( mag, evType, rRup, vs30, z25, ztor, region, lnY, sigma, phi, tau,
      1            rockPGA, specT, period2, iflag, ACadjfac, epiflag )
 
 C     Model Version: March 16, 2021 - PEER Report Version
@@ -17,7 +17,7 @@ c      character*80 RegName(8), RegName1
       integer i, j, k, region, i9, iParam, count1, count2, iflag
       real mag, rRup, ZTOR, evType
       real rockPGA, period2, period(MAXPER), specT
-      real mu, r
+      real lnY, r
       real VLin(MAXPER), b_soil(MAXPER), c1, vs
       real vs30, sum1, angle1, taperTheta
       real n, c, T1, T2
@@ -28,7 +28,7 @@ c      integer iprint
       real z25
       real term1, term1a, term1b, term1c, term2, term3, term4,
      1    term5, term6, term7, term6a
-      real theta(45), part(45), NL_soil, mu1
+      real theta(45), part(45), NL_soil, lnY1
       real a1(MAXPER), a2(MAXPER), a3(MAXPER), a4(MAXPER), a5(MAXPER),
      1     a6(MAXPER), a7(MAXPER), a8(MAXPER), a9(MAXPER), a10(MAXPER),
      1     a11(MAXPER), a12(MAXPER), a13(MAXPER), a14(MAXPER), a15(MAXPER),
@@ -601,9 +601,9 @@ c      if ( evType .eq. 1 ) then
       endif
 
 c     comptue median
-      mu = NL_soil
+      lnY = NL_soil
       do iParam=1,45
-        mu = mu + theta(iParam) * part(iParam)
+        lnY = lnY + theta(iParam) * part(iParam)
       enddo
 
 C     Apply Alaska or Cascadia adjustment is requested.
@@ -643,25 +643,25 @@ C     Apply Alaska or Cascadia adjustment is requested.
         term7 = term7 + theta(k)*part(k)
       enddo
 
-      mu1 = term1 + term2 + term3 + term4 + term5 + term6 + term6a + term7
+      lnY1 = term1 + term2 + term3 + term4 + term5 + term6 + term6a + term7
      1      + term1a + term1b + term1c
 
 C     Apply Epistemic model only for Global version
       if (Region .eq. 8) then
          cepi = e1T + e2T*(Rrup/100.0) + e3T*(Rrup/100.0)*(Rrup/100.0)
          if (epiflag .eq. -1) then
-            mu = mu - cepi
-            mu1 = mu1 - cepi
+            lnY = lnY - cepi
+            lnY1 = lnY1 - cepi
          elseif (epiflag .eq. 1) then
-            mu = mu + cepi
-            mu1 = mu1 + cepi
+            lnY = lnY + cepi
+            lnY1 = lnY1 + cepi
          endif
       endif
 
 c      if (specT .eq. 0.0 .and. vs30 .eq. 760.0) then
 c          write (*,'( i5,30f10.4))')
 c     1     region, mag, ZTOR, evType, rrup, vs30, z25, z25ref,
-c     1      rockpga, specT, mu, exp(mu1),
+c     1      rockpga, specT, lnY, exp(lnY1),
 c     1      term1, term1a , term1b , term1c, term2, term3, term4, term5,
 c     1      term6, term6a, term7
 c
@@ -670,7 +670,7 @@ c      endif
 
 c      if (iprint .eq. 1 ) write (33,'( i5,30f10.4))')
 c     1     region, mag, ZTOR, evType, rrup, vs30, z25,
-c     1      rockpga, mu,
+c     1      rockpga, lnY,
 c     1      term1, term2, term3, term4, term5, term6, term6a, term7,
 c     1      term1a , term1b , term1c, z25ref, temp1,
 c     1      alog ( ( z25 + 50.) /(z25ref+50.) )
@@ -833,7 +833,7 @@ c     eq 5.8
 
 
 c     Convert units spectral acceleration in gal
-      mu = mu + 6.89
+      lnY = lnY + 6.89
 
       return
       end

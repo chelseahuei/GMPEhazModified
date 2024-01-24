@@ -16,7 +16,7 @@
 #' @param region regional flag, region=7 for Taiwan, region=8 for Global.
 #' @param epiflag .
 #'
-#' @return A list will be return, including mag, evType, rRup, vs30, z25, ztor, region, mu, sigma, phi, tau,
+#' @return A list will be return, including mag, evType, rRup, vs30, z25, ztor, region, lnY, sigma, phi, tau,
 #'                                          rockPGA, specT, period2, iflag, ACadjfac, epiflag.
 #'
 #' @examples
@@ -28,11 +28,11 @@ AG2020 <- function(Mag, Rrup, Prd, ftype=0, Vs30, z25, ztor, region=7, epiflag=1
   if (Prd != 0 & (Prd < 0.01 | Prd > 10)) {
     stop("Period out of range! \n\n")
   }
-  #AG2020 ( mag, evType, rRup, vs30, z25, ztor, region, mu, sigma, phi, tau,
+  #AG2020 ( mag, evType, rRup, vs30, z25, ztor, region, lnY, sigma, phi, tau,
   #             rockPGA, specT, period2, iflag, ACadjfac, epiflag )
   retvals <- .Fortran("S35_AG2020", mag=as.single(Mag), evType=as.single(ftype), rRup=as.single(Rrup),
                       vs30=as.single(Vs30), z25=as.single(z25), ztor=as.single(ztor), region=as.integer(region),
-                      mu=as.single(0.0), sigma=as.single(0.1), phi=as.single(0.0), tau=as.single(0.0), 
+                      lnY=as.single(0.0), sigma=as.single(0.1), phi=as.single(0.0), tau=as.single(0.0), 
                       rockPGA=as.single(0), specT=as.single(Prd), period2=as.single(0), iflag=as.integer(1),
                       ACadjfac=as.single(0), epiflag=as.integer(epiflag))
   names(retvals) <- c("mag", "evType", "rRup", "vs30", "z25", "ztor", "region", "lnY", "sigma", "phi", "tau",

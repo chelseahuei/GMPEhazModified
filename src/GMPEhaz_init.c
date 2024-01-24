@@ -9,7 +9,7 @@ Check these declarations against the C/Fortran source code.
 /* .Fortran calls */
 extern void F77_NAME(ab03)(void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *);
 extern void F77_NAME(ac_2010)(void *, void *, void *, void *, void *, void *, void *, void *, void *, void *);
-extern void F77_NAME(AG2020)(void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *);
+extern void F77_NAME(S35_AG2020)(void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *);
 extern void F77_NAME(am09_cas)(void *, void *, void *, void *, void *, void *, void *);
 extern void F77_NAME(arroyo2010)(void *, void *, void *, void *, void *, void *, void *, void *, void *);
 extern void F77_NAME(asb_2013)(void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *);
@@ -134,7 +134,7 @@ extern void F77_NAME(zhaoetal2016_slab)(void *, void *, void *, void *, void *, 
 static const R_FortranMethodDef FortranEntries[] = {
   {"ab03",                        (DL_FUNC) &F77_NAME(ab03),                        13},
   {"ac_2010",                     (DL_FUNC) &F77_NAME(ac_2010),                     10},
-  {"AG2020",                      (DL_FUNC) &F77_NAME(AG2020),                      17},
+  {"S35_AG2020",                  (DL_FUNC) &F77_NAME(S35_AG2020),                  17},
   {"am09_cas",                    (DL_FUNC) &F77_NAME(am09_cas),                     7},
   {"arroyo2010",                  (DL_FUNC) &F77_NAME(arroyo2010),                   9},
   {"asb_2013",                    (DL_FUNC) &F77_NAME(asb_2013),                    11},

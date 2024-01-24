@@ -123,6 +123,8 @@ extern void F77_NAME(s05_bchydrosub_global)(void *, void *, void *, void *, void
 extern void F77_NAME(s05_bchydrosub_southam)(void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *);
 extern void F77_NAME(s05_bchydrosub_taiwan)(void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *);
 extern void F77_NAME(s35_ag2020)(void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *);
+extern void F77_NAME(s35_kbcg2019)(void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *);
+extern void F77_NAME(s35_pshab2019)(void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *);
 extern void F77_NAME(tg09221_2012)(void *, void *, void *, void *, void *, void *, void *, void *, void *);
 extern void F77_NAME(youngs97_rock)(void *, void *, void *, void *, void *, void *, void *, void *, void *, void *);
 extern void F77_NAME(youngs97_soil)(void *, void *, void *, void *, void *, void *, void *, void *, void *, void *);
@@ -248,6 +250,8 @@ static const R_FortranMethodDef FortranEntries[] = {
   {"s05_bchydrosub_southam",      (DL_FUNC) &F77_NAME(s05_bchydrosub_southam),      13},
   {"s05_bchydrosub_taiwan",       (DL_FUNC) &F77_NAME(s05_bchydrosub_taiwan),       13},
   {"s35_ag2020",                  (DL_FUNC) &F77_NAME(s35_ag2020),                  17},
+  {"s35_kbcg2019",                (DL_FUNC) &F77_NAME(s35_kbcg2019),                20},
+  {"s35_pshab2019",               (DL_FUNC) &F77_NAME(s35_pshab2019),               18},
   {"tg09221_2012",                (DL_FUNC) &F77_NAME(tg09221_2012),                 9},
   {"youngs97_rock",               (DL_FUNC) &F77_NAME(youngs97_rock),               10},
   {"youngs97_soil",               (DL_FUNC) &F77_NAME(youngs97_soil),               10},

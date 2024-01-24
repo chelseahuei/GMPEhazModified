@@ -1,5 +1,6 @@
 cnames.AB03 <- c("Mag", "Rrup", "Prd", "ftype", "depth", "Sc", "Sd", "Se")
 cnames.AC10 <- c("Mag", "Rjb", "Prd", "ftype", "Vs30")
+cnames.AG2020 <- c("Mag", "Rrup", "Prd", "ftype", "Vs30", "z25", "Ztor", "region")
 cnames.AGA16.tw.C01 <- c("Mag", "Rrup", "Prd", "ftype", "Vs30", "Ztor", "depth", "Rhypo")
 cnames.AGA16.tw.F10 <- c("Mag", "Rrup", "Prd", "ftype", "Vs30", "Ztor", "depth", "Rhypo")
 cnames.AM09 <- c("Mag", "Rrup", "Prd")

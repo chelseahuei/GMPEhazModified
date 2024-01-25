@@ -1,6 +1,6 @@
 c ----------------------------------------------------------------------
       subroutine S35_PSHAB2019 ( mag, Ftype, rRup, vs30, z25, lnY, sigma, phi, tau,
-     2                     specT, period2, iflag, depth, Rhypo, region, mbInter, mbSlab, pnwbflag )
+     2                     specT, period2, iflag, depth, disthypo, region, mbInter, mbSlab, pnwbflag )
 
 C     Model Version: December 16, 2020
 
@@ -41,7 +41,7 @@ C     Model Version: December 16, 2020
      1     Japan_a0SlabT, SA_a0SlabT, Taiwan_a0SlabT, Global_a0SlabT
       real a0Pga, c0Pga, fpPga, fmPga, fdPga, x
 
-      real sigma, lnY, pgaRock, vs30, rRup, Rhypo, mag, depth, Ftype
+      real sigma, lnY, pgaRock, vs30, rRup, disthypo, mag, depth, Ftype
       real period2, specT, z25
       real b4, f1, f3, Vb, Vref, mbInter, mbslab
       real Fm, Fp, Fd, Fs, Flin, Fnl, f2, db1, h, R, Rref, muz25, deltaz25, fb, cas_e3TBasin, cas_e2TBasin

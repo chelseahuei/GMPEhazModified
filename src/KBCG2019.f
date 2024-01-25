@@ -886,6 +886,7 @@ C     In cases where PSA < PGA, then set PSA = PGA
 
 c     Convert units spectral acceleration in gal
       lnY = lnY + 6.89
+      lnY = lnY*exp(6.89)
 
 C     Set sigma values to return
       sigma = sqrt(sigPhiT*sigPhiT + sigTauT*sigTauT)

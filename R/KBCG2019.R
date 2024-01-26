@@ -11,10 +11,12 @@
 #' @param Prd Period of spectral acceleration.
 #' @param ftype fytpe=0 for interface, ftype=1 for intraslab.
 #' @param Vs30 Vs30(m/s).
-#' @param z25 .
-#' @param ztor (km).
-#' @param region regional flag, region=7 for Taiwan, region=8 for Global.
+#' @param z25 Depth to a shear wave horizon of 2500 m/s(m).
+#' @param ztor Depth to top of rupture(km).
+#' @param region regional flag, region=7 for Taiwan, region=0 for Global.
 #' @param epiflag .
+#' @param mbInter Magnitude Break Point, 7.1 for Taiwan.
+#' @param mbSlab Magnitude Break Point, 7.7 for Taiwan.
 #'
 #' @return A list will be return, including mag, Ftype, rRup, vs30, z25, lnY, sigma, phi, tau,
 #'                                          specT, period2, iflag, depth, disthypo, iRegion, mbInter,

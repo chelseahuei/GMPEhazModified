@@ -1,9 +1,9 @@
-#' GMPE function for Abrahamson and Gülerce et al.(2020)
+#' GMPE function for Parker, Grace A., et al.(2019)
 #'
-#' \code{PSHAB2019} returns the ground-motion prediction with it sigma of Abrahamson and Gülerce et al.(2020) GMPE.
+#' \code{PSHAB2019} returns the ground-motion prediction with it sigma of Parker, Grace A., et al.(2019) GMPE.
 #'
-#'Norman Abrahamson and Zeynep Gülerce(2020) Regionalized Ground-Motion Models for
-#'Subduction Earthquakes Based on the NGA-SUB Database, PEER Report No. 2020/25.
+#'Parker, G. A., Stewart, J. P., Boore, D. M., Atkinson, G. M., & Hassani, B. (2022). NGA-subduction global ground motion models 
+#'with regional adjustment factors. Earthquake Spectra, 38(1), 456-493.
 #'\url{http://dx.doi.org/10.1193/051712EQS188MR}
 #'
 #' @param Mag Earthquake momnet magnitude, Numeric.
@@ -11,10 +11,12 @@
 #' @param Prd Period of spectral acceleration.
 #' @param ftype fytpe=0 for interface, ftype=1 for intraslab.
 #' @param Vs30 Vs30(m/s).
-#' @param z25 .
-#' @param ztor (km).
-#' @param region regional flag, region=7 for Taiwan, region=8 for Global.
-#' @param epiflag .
+#' @param z25 Depth to a shear wave horizon of 2500 m/s(m).
+#' @param depth Depth to Hypocenter(km).
+#' @param ztor Depth to top of rupture(km).
+#' @param region regional flag, region=9 for Taiwan, region=0 for Global.
+#' @param mbInter Magnitude Break Point, 7.1 for Taiwan.
+#' @param mbSlab Magnitude Break Point, 7.7 for Taiwan.
 #'
 #' @return A list will be return, including mag, Ftype, rRup, vs30, z25, lnY, sigma, phi, tau,
 #'                                          specT, period2, iflag, depth, Rhypo, region, mbInter,

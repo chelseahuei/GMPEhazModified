@@ -887,7 +887,7 @@ C     Site Effect
       if  (vs30 .lt. vlinT ) then
          fsite = a12 * alog(vs/vlinT) - bT*alog(pga1000+c) + bT*alog(pga1000+c*((vs/vlinT)**1.18))
       else
-         fsite = a12 * alog(vs/vlinT) - bT*1.18*alog(vs/vlinT)
+         fsite = a12 * alog(vs/vlinT) + bT*1.18*alog(vs/vlinT)
       endif
 
 C   Basin Depth term

@@ -25,7 +25,7 @@
 #' PSHAB2019(7, 10, 0, 0, 760, 1, 10, 7, 1)
 #'
 #' @export
-PSHAB2019 <- function(Mag, Rrup, Prd, ftype=0, Vs30, z25, depth, Rhypo, region=7, pnwflag=1) {
+PSHAB2019 <- function(Mag, Rrup, Prd, ftype=0, Vs30, z25, depth, mbInter, mbSlab, region=7, pnwflag=1) {
   if (Prd != 0 & (Prd < 0.01 | Prd > 10)) {
     stop("Period out of range! \n\n")
   }

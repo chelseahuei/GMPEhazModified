@@ -894,12 +894,12 @@ C   Basin Depth term
       if(regionflag .eq. 1) then
        
         Ez1 = exp(-3.96/2.0 * alog((vs30**2.0 + 352.7**2.0)/(1750.0**2.0 + 352.7**2.0)))
-        fz10 = a8T*(min(alog(Z10*1000/Ez1),1.0))     
+        fz10 = a8T*(min(alog(Z10/Ez1),1.0))     
   
       else
   
         Ez1 = exp(-5.23/2.0 * alog((vs30**2.0 + 412.39**2.0)/(1360.0**2.0 + 412.39**2.0)))
-        fz10 = a8jpT*(min(alog(Z10*1000/Ez1),1.0))     
+        fz10 = a8jpT*(min(alog(Z10/Ez1),1.0))     
   
       endif       
 

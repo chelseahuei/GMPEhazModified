@@ -842,7 +842,7 @@ C  Regional term and  Basin Depth term
 C.....First compute the Reference Rock PGA value...........
 C     Magnitude Scaling
       if (mag .le. Mref(1) ) then
-        fmag = a4*(mag-Mref(1)) + a13(1)*(10.0-mag)**2.0
+        fmag = a4tw(1)*(mag-Mref(1)) + a13(1)*(10.0-mag)**2.0
       else
         fmag = a5(1)*(mag-Mref(1)) + a13(1)*(10.0-mag)**2.0
       endif 

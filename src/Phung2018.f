@@ -859,7 +859,7 @@ C     Path Scaling
        frup = a1tw(1) + a7(1)*fevt +(a2(1) + a14(1)*fevt + a3*(mag - 7.8))*alog(R) + a6tw(1)*rRup 
 
 C     Site Effect
-       fsite4pga = a12tw(1) * alog(vs30/vlin(1)) + b(1)*1.18*alog((vs30/vlin(1)))
+       fsite4pga = a12tw(1) * alog(1000.0/vlin(1)) + b(1)*1.18*alog((1000.0/vlin(1)))
 
       pga1000 = exp(fmag+fztor+frup+fsite4pga)
 

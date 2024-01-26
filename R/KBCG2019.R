@@ -1,9 +1,9 @@
-#' GMPE function for Abrahamson and Gülerce et al.(2020)
+#' GMPE function for Kuehn, Nicolas, et al.(2019)
 #'
-#' \code{KBCG2019} returns the ground-motion prediction with it sigma of Abrahamson and Gülerce et al.(2020) GMPE.
+#' \code{KBCG2019} returns the ground-motion prediction with it sigma of Kuehn, Nicolas, et al.(2019) GMPE.
 #'
-#'Norman Abrahamson and Zeynep Gülerce(2020) Regionalized Ground-Motion Models for
-#'Subduction Earthquakes Based on the NGA-SUB Database, PEER Report No. 2020/25.
+#'Kuehn, N., Bozorgnia, Y., Campbell, K., & Gregor, N. (2020). Partially non-ergodic ground-motion model for 
+#'subduction regions using the NGA subduction database. PEER Reports.
 #'\url{http://dx.doi.org/10.1193/051712EQS188MR}
 #'
 #' @param Mag Earthquake momnet magnitude, Numeric.

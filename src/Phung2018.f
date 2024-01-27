@@ -569,8 +569,8 @@ c ------------------------------------------------------------------
       implicit none
      
       real mag, fType, rRup, vs30, Z10, ZTor, pga1000, period0,
-     1     lnSa, lnY, sigma, tau, period2, sigma1,
-     2     depth, specT, Ztor
+     1     lnSa, lnY, sigma, tau, phi, period2, sigma1,
+     2     depth, specT
       integer iflag, regionflag
 
 

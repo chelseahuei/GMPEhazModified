@@ -562,9 +562,39 @@ C     Convert ground motion to units of gals.
 
 c ------------------------------------------------------------------            
 C *** Adjusted BCHydro model by Phung and Loh ***********
-c ------------------------------------------------------------------            
+c ------------------------------------------------------------------   
+      subroutine S04_PhungSub2018 ( mag, rRup, vs30, Z10, ZTor, pga1000, lnY, sigma,  
+     2                     specT, period2, iflag, regionflag, ftype )
 
-      subroutine S04_PhungSub2018 ( mag, rRup, vs30, Z10, ZTor, lnY, sigma,  
+      implicit none
+     
+      real mag, fType, rRup, vs30, pga1000, period0,
+     1     lnSa, lnY, sigma, tau, period2, sigma1,
+     2     depth, specT, Ztor
+      integer iflag, regionflag
+
+
+c     compute pga on rock
+      period0 = 0.0
+      pga1000 = 0.0
+
+C     Compute Rock PGA
+      call S04_PhungSub2018_model ( mag, rRup, vs30, Z10, ZTor, pga1000, lnSa, sigma,  
+     2                     period0, period2, iflag, regionflag, ftype )
+      pga1000 = exp(lnSa)
+ 
+C     Compute regular ground motions. 
+      call S04_PhungSub2018_model ( mag, rRup, vs30, Z10, ZTor, pga1000, lnSa, sigma,  
+     2                     specT, period2, iflag, regionflag, ftype )
+
+
+c     Convert units spectral acceleration in gal                                
+      lnY = lnSa + 6.89                                                
+      return
+      end
+
+c ------------------------------------------------------------------
+      subroutine S04_PhungSub2018_model ( mag, rRup, vs30, Z10, ZTor, pga1000, lnSa, sigma,  
      2                     specT, period2, iflag, regionflag, ftype )
 
       implicit none
@@ -839,29 +869,8 @@ C  Regional term and  Basin Depth term
   
       endif
       
-C.....First compute the Reference Rock PGA value...........
-C     Magnitude Scaling
-      if (mag .le. Mref(1) ) then
-        fmag = a4tw(1)*(mag-Mref(1)) + a13(1)*(10.0-mag)**2.0
-      else
-        fmag = a5(1)*(mag-Mref(1)) + a13(1)*(10.0-mag)**2.0
-      endif 
-   
-C     Ztor Scaling        
-      if  (ftype .eq. 0.0 ) then
-         fztor = a10(1) *(min(Ztor,40.0)-20)
-      elseif (ftype .eq. 1.0 ) then
-         fztor = a11(1) *(min(Ztor,80.0)-40)
-      endif
+C.
       
-C     Path Scaling
-       R = rRup + c4*exp( (mag-6.0)*a9 ) 
-       frup = a1tw(1) + a7(1)*fevt +(a2(1) + a14(1)*fevt + a3*(mag - 7.8))*alog(R) + a6tw(1)*rRup 
-
-C     Site Effect
-       fsite4pga = a12tw(1) * alog(1000.0/vlin(1)) + b(1)*1.18*alog((1000.0/vlin(1)))
-
-      pga1000 = exp(fmag+fztor+frup+fsite4pga)
 
 C.....Now compute the requested ground motion value........
 C     Magnitude Scaling
@@ -903,7 +912,7 @@ C   Basin Depth term
   
       endif       
 
-
+       pga1000 = exp(fmag + fztor + frup + fsite)
        lnSa = fmag + frup + fztor + fsite + fz10 
    
 C     Set sigma values to return
@@ -918,8 +927,7 @@ c     write(*,*) "fztor = ", fztor
 c     write(*,*) "lnSa = ", lnSa
 c     write(*,*) "Sa = ", exp(lnSa)
  
-C     Convert ground motion to units of gals.
-      lnY = lnSa + 6.89
+
       period2 = period1
       return
       END

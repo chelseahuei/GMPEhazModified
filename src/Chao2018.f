@@ -535,7 +535,7 @@ C     Set Path scaling term
 C     Set Site scaling term 
     
       Z10ref = exp((-4.08/2.0)*alog((vs**2.0+355.4**2.0)/(1750**2.0+355.4**2.0)))
-      Ssitelin = c24T * alog(vs/vs30ref) + c25T*alog(Z10*1000/Z10ref)
+      Ssitelin = c24T * alog(vs/vs30ref) + c25T*alog(Z10/Z10ref)
 
       if(vs .LT. vs30ref ) then  
            C23flag=1

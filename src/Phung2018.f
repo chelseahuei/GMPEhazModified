@@ -568,7 +568,7 @@ c ------------------------------------------------------------------
 
       implicit none
      
-      real mag, fType, rRup, vs30, Z10, ZTor, pga1000, pga_rock, period0,
+      real mag, fType, rRup, vs30, Z10, ZTor, pga1000, pga_rock, pga_vs30, period0,
      1     lnSa, lnY, sigma, tau, phi, period2, sigma1,
      2     depth, specT
       integer iflag, regionflag
@@ -577,9 +577,10 @@ c ------------------------------------------------------------------
 c     compute pga on rock
       period0 = 0.0
       pga_rock = 0.0
+      pga_vs30 = 1000
 
 C     Compute Rock PGA
-      call S04_PhungSub2018_model ( mag, rRup, vs30, Z10, ZTor, pga_rock, lnSa, sigma,  
+      call S04_PhungSub2018_model ( mag, rRup, pga_vs30, Z10, ZTor, pga_rock, lnSa, sigma,  
      2                     period0, period2, iflag, regionflag, ftype )
       pga1000 = exp(lnSa)
  

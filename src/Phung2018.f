@@ -913,7 +913,7 @@ C   Basin Depth term
   
       endif       
 
-       pga1000 = exp(fmag + fztor + frup + fsite)
+C      pga1000 = exp(fmag + fztor + frup + fsite)
        lnSa = fmag + frup + fztor + fsite + fz10 
    
 C     Set sigma values to return

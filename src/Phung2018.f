@@ -563,7 +563,7 @@ C     Convert ground motion to units of gals.
 c ------------------------------------------------------------------            
 C *** Adjusted BCHydro model by Phung and Loh ***********
 c ------------------------------------------------------------------   
-      subroutine S04_PhungSub2018 ( mag, rRup, vs30, Z10, ZTor, pga1000, lnY, sigma,  
+      subroutine S04_PhungSub2018 ( mag, rRup, vs30, Z10, ZTor, lnY, sigma,  
      2                     specT, period2, iflag, regionflag, ftype )
 
       implicit none

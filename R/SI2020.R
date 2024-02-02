@@ -1,6 +1,6 @@
 #' GMPE function for Si et al.(2020)
 #'
-#' \code{AG2020} returns the ground-motion prediction with it sigma of Si et al.(2020) GMPE.
+#' \code{SI2020} returns the ground-motion prediction with it sigma of Si et al.(2020) GMPE.
 #'
 #'Si, H., Midorikawa, S., & Kishida, T. (2022). Development of NGA-Sub ground-motion prediction equation of 5%-damped 
 #'pseudo-spectral acceleration based on database of subduction earthquakes in Japan. Earthquake Spectra, 38(4), 2682-2706.
@@ -29,7 +29,7 @@ SI2020 <- function(Mag, Rrup, Prd, ftype=0, Vs30, z25, depth, Dmoho) {
   }
   #SI2020 ( mag, Ftype, rRup, vs30, z25, lnSa, sigma, phi, tau,
                                         specT, period2, iflag, depth, mohodepth )
-  retvals <- .Fortran("S35_AG2020", mag=as.single(Mag), Ftype=as.single(ftype), rRup=as.single(Rrup),
+  retvals <- .Fortran("S35_SMK2020", mag=as.single(Mag), Ftype=as.single(ftype), rRup=as.single(Rrup),
                       vs30=as.single(Vs30), z25=as.single(z25),
                       lnSa=as.single(0.0), sigma=as.single(0.1), phi=as.single(0.0), tau=as.single(0.0), 
                       specT=as.single(Prd), period2=as.single(0), iflag=as.integer(1),

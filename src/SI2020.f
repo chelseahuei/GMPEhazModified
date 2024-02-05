@@ -1,6 +1,6 @@
 c ----------------------------------------------------------------------
 
-      subroutine S35_SMK2020 ( mag, Ftype, rRup, vs30, z25, lnSa, sigma, phi, tau,
+      subroutine S35_SMK2020 ( mag, Ftype, rRup, vs30, z25, lnY, sigma, phi, tau,
      2                     specT, period2, iflag, depth, mohodepth )
 
       implicit none
@@ -13,7 +13,7 @@ c ----------------------------------------------------------------------
      2     Vc(MAXPER), f4(MAXPER), f5(MAXPER), sigphi(MAXPER), sigtau(MAXPER)
       real eT, a1T, d1T, a2T, hT, cdT, DdT, CT, VcT, f4T, f5T, sigPhiT, sigTauT
       real Vref, f1, f3
-      real sigma, lnSa, pgaRock, vs30, rRup, mag, depth, Ftype, mohodepth
+      real sigma, lnY, pgaRock, vs30, rRup, mag, depth, Ftype, mohodepth
       real period2, specT, z25, phi, tau
       real kterm, ktermpga, cterm, ctermpga, cutDD, gterm, gtermpga, gdterm, gdtermpga
       real bterm, btermpga, flin, fnl, gsterm, f2, median
@@ -308,9 +308,9 @@ C     Median Ground motion values
       median = 10**(bterm + gterm - kterm*Rrup + gsterm + gdterm)
 
 C     Convert to LN units
-      lnSa = alog(Median)
+      lnY = alog(Median)
 c     Convert units spectral acceleration in gal
-      lnSa = lnSa + 6.89
+      lnY = lnY + 6.89
 
 C     Set sigma values to return
       sigma = sqrt(sigPhiT*sigPhiT + sigTauT*sigTauT)

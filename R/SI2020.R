@@ -15,7 +15,7 @@
 #' @param depth (km).
 #' @param mohodepth (km).
 #'
-#' @return A list will be return, including mag, Ftype, rRup, vs30, z25, lnSa, sigma, phi, tau,
+#' @return A list will be return, including mag, Ftype, rRup, vs30, z25, lnY, sigma, phi, tau,
 #'                                          specT, period2, iflag, depth, mohodepth.
 #'
 #' @examples
@@ -27,14 +27,14 @@ SI2020 <- function(Mag, Rrup, Prd, ftype=0, Vs30, z25, depth, Dmoho) {
   if (Prd != 0 & (Prd < 0.01 | Prd > 10)) {
     stop("Period out of range! \n\n")
   }
-  #SI2020 ( mag, Ftype, rRup, vs30, z25, lnSa, sigma, phi, tau,
+  #SI2020 ( mag, Ftype, rRup, vs30, z25, lnY, sigma, phi, tau,
   #                                      specT, period2, iflag, depth, mohodepth )
   retvals <- .Fortran("S35_SMK2020", mag=as.single(Mag), Ftype=as.single(ftype), rRup=as.single(Rrup),
                       vs30=as.single(Vs30), z25=as.single(z25),
-                      lnSa=as.single(0.0), sigma=as.single(0.1), phi=as.single(0.0), tau=as.single(0.0), 
+                      lnY=as.single(0.0), sigma=as.single(0.1), phi=as.single(0.0), tau=as.single(0.0), 
                       specT=as.single(Prd), period2=as.single(0), iflag=as.integer(1),
                       depth=as.single(depth), mohodepth=as.single(Dmoho))
-  names(retvals) <- c("mag", "Ftype", "rRup", "vs30", "z25", "lnSa", "sigma", "phi", "tau",
+  names(retvals) <- c("mag", "Ftype", "rRup", "vs30", "z25", "lnY", "sigma", "phi", "tau",
                       "specT", "period2", "iflag", "depth", "Dmoho")
   return(retvals)
 }

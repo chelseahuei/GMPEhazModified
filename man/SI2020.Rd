@@ -33,7 +33,6 @@ A list will be return, including mag, Ftype, rRup, vs30, z25, lnSa, sigma, phi, 
 \details{
 Si, H., Midorikawa, S., & Kishida, T. (2022). Development of NGA-Sub ground-motion prediction equation of 5%-damped 
 pseudo-spectral acceleration based on database of subduction earthquakes in Japan. Earthquake Spectra, 38(4), 2682-2706.
-\url{http://dx.doi.org/10.1193/051712EQS188MR}
 }
 \examples{
 SI2020(6, 20, 0, 0, 760, 1, 10, 7, 1)

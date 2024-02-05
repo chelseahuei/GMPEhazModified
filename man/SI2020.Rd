@@ -25,7 +25,7 @@ SI2020(Mag, Rrup, Prd, ftype=0, Vs30, z25, depth, Dmoho)
 
 }
 \value{
-A list will be return, including mag, Ftype, rRup, vs30, z25, lnSa, sigma, phi, tau, specT, period2, iFlag, depth, mohodepth
+A list will be return, including mag, Ftype, rRup, vs30, z25, lnY, sigma, phi, tau, specT, period2, iFlag, depth, mohodepth
 }
 \description{
 \code{SI2020} returns the ground-motion prediction with it sigma of Si et al.(2020) GMPE.

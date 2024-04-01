@@ -24,7 +24,7 @@
 #'
 #' @export
 SI2020 <- function(Mag, Rrup, Prd, ftype=0, Vs30, z25, depth, Dmoho) {
-  if (Prd != 0 & (Prd < 0.01 | Prd > 10)) {
+  if (Prd != 0 & Prd != -1 & (Prd < 0.01 | Prd > 10)) {
     stop("Period out of range! \n\n")
   }
   #SI2020 ( mag, Ftype, rRup, vs30, z25, lnY, sigma, phi, tau,

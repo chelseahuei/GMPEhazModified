@@ -502,7 +502,7 @@ c Nonlinear soil amplification
 
 C Deviation from ln(Vs30) scaling: bedrock depth (Z1) effect.
         Ez1 = exp(-3.73/2.0 * alog((VS**2.0 + 290.53**2.0)/(1750.0**2.0 + 290.53**2.0)))
-        deltaZ1 = depthvs10*1000.0 - Ez1
+        deltaZ1 = depthvs10 - Ez1
  
         if (regionflag .eq. 0) then
             term16 = 0.0

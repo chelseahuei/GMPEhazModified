@@ -7,7 +7,7 @@ A R package for wrapping GMPE functions from Norman Abrahamson's fortran [HAZ](h
 
 2024/01/30 --Updata Chao2018 and Phung2018 to 2020 version.
 
-2024/02/02 --Add NGA-W subduction GMPE models(AG2020, KBCG2022, PSHAB2020, SI2020).
+2024/02/02 --Add NGA-W subduction GMPE models(AG2022, KBCG2020, PSHAB2020, SI2022).
 
 
 # Install
